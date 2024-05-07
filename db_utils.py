@@ -192,7 +192,7 @@ class DataFrameInfo():
         stat, p = normaltest(df[column], nan_policy='omit')
         print('Statistics = %.3f, p=%.3f' % (stat, p))
 
-    def get_similarity_with_other_column(self, df, column1, column2):
+    def get_similarity_between_columns(self, df, column1, column2):
         """
         Provides similarity score between two columns
         """
@@ -256,8 +256,10 @@ class Plotter():
         """
         Shows correlation heatmap
         """
+        fig, ax = plt.subplots(figsize=(20,12))
         mask = np.triu(np.ones_like(df.corr()))
         sns.heatmap(df.corr(), annot=True, cmap='coolwarm', mask=mask)
+        plt.tight_layout()
         plt.show()
 
     def one_boxplot(self, df, column):
@@ -292,7 +294,6 @@ class Plotter():
         print(f'IQR: {IQR}')
         print(f'Q2: {Q3}')
         print(f'Upper limit: {upper_limit}')
-
 
     def hist_skew(self, df, column, bins):
         """
@@ -386,6 +387,7 @@ class DataFrameTransforms():
         inverse_transformed_column = power_transformer.inverse_transform(df[[column]])
         df[[column]] = inverse_transformed_column
         print(f'Skewness of {column} after inverse transformation: {df[column].skew()}')
+
 
     def yj_transform(self, df, column):
         '''
