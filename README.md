@@ -3,8 +3,11 @@
 ___
 ## Table of Contents
 [1. Project Description](#project-description)
+
 [2. Installation](#installation)
+
 [3. File Structure](#file-structure)
+
 [4. License](#license)
 
 ___
